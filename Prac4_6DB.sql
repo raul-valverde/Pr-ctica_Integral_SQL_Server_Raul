@@ -38,11 +38,13 @@ apellido varchar(50) not null,
 edad int,
 correo varchar(100),
 fecha_registro datetime default getdate(),
+IdCitas int
 
 --restricciones
 constraint PK_Pacientes primary key (IdPaciente),
 constraint UQ_Correo unique (correo),
 constraint CHK_Edad check (edad >= 0 and edad <= 120),
+constraint FK_Citas foreign key (IdCitas) references Gestion.Citas(IdCita)
 
 );
 GO
@@ -50,13 +52,22 @@ GO
 --Creamos la tabla Medicos
 Create table RRHH.Medicos(
 IdMedico int,
-nombre varchar(50),
-apellido varchar(50),
-IdEspecialidad int,
+nombre varchar(50) not null,
+apellido varchar(50) not null,
+Especialidad int,
 correo varchar(100),
 fecha_contratacion datetime,
 edad int,
-salario decimal(10,2)
+salario decimal(10,2),
+Citas int
+
+--restricciones
+constraint PK_Medicos primary key (IdMedico),
+constraint UQ_CorreoMedico unique (correo),
+constraint CHK_Edad check (edad >= 0 and edad <= 120),
+constraint CHK_Salario check (salario >= 0)
+constraint FK_Especialidad foreign key (Especialidad) references RRHH.Especialidades(IdEspecialidad),
+constraint FK_CitasMedico foreign key (Citas) references Gestion.Citas(IdCita)
 );
 Go
 
@@ -65,6 +76,7 @@ Create table RRHH.Especialidades(
 IdEspecialidad int,
 nombre varchar(50),
 descripcion varchar(255)
+
 );
 Go
 
