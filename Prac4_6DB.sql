@@ -33,11 +33,17 @@ Go
 --Creamos la tabla Pacientes
 Create table Clinico.Pacientes(
 IdPaciente int,
-nombre varchar(50),
-apellido varchar(50),
+nombre varchar (50) not null,
+apellido varchar(50) not null,
 edad int,
 correo varchar(100),
-fecha_registro datetime
+fecha_registro datetime default getdate(),
+
+--restricciones
+constraint PK_Pacientes primary key (IdPaciente),
+constraint UQ_Correo unique (correo),
+constraint CHK_Edad check (edad >= 0 and edad <= 120),
+
 );
 GO
 
