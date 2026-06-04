@@ -1,9 +1,12 @@
---Verificamos que no exista una base de datos con el mismo nombre
-IF EXISTS (SELECT name FROM sys.databases WHERE name = 'HospitalDB')
-BEGIN
-    DROP DATABASE HospitalDB
-    PRINT 'La base de datos ya existía y ha sido eliminada.'
-END
+use master --Ponemos en uso master para poder eliminar la base de datos
+Go
+
+Alter database HospitalDB set single_user with rollback immediate
+Go
+
+--Eliminamos la base de datos si ya existe
+Drop database if exists HospitalDB
+Go
 
 --Creamos la base de datos
 CREATE DATABASE HospitalDB
@@ -11,16 +14,21 @@ GO
 
 --Mostrar todas las bases de datos existentes
 select * from sys.databases
+Go
 
 --Seleccionamos la base de datos que acabamos de crear
 USE HospitalDB
+Go
 
 --Creamos los esquemas para organizar nuestras tablas
 create schema Clinico
+Go
 
 create schema RRHH
+Go
 
 Create schema Gestion
+Go
 
 --Creamos la tabla Pacientes
 Create table Clinico.Pacientes(
@@ -62,6 +70,7 @@ IdMedico int,
 fecha_cita datetime,
 IdEspecialidad int
 );
+Go
 
 --Creamos la tabla Habitaciones
 Create table Gestion.Habitaciones(
@@ -74,6 +83,7 @@ IdEspecialidad int,
 DescripcionHabitacion varchar(255),
 PrecioHabitacion decimal(10,2)
 );
+Go
 
 --Creamos la tabla Tratamientos
 Create table Clinico.Tratamientos(
@@ -86,6 +96,7 @@ fecha_inicio datetime,
 fecha_fin datetime,
 total decimal(10,2)
 );
+Go
 
 --Creamos la tabla Medicamentos
 Create table Clinico.Medicamentos(
@@ -97,3 +108,4 @@ stock int,
 IdTratamiento int,
 NeedReceta bit
 );
+Go
