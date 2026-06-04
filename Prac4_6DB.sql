@@ -8,5 +8,9 @@ END
 --Creamos la base de datos
 CREATE DATABASE HospitalDB
 GO
+
 --Mostrar todas las bases de datos existentes
 select * from sys.databases
+
+--Seleccionamos la base de datos que acabamos de crear
+USE HospitalDB
