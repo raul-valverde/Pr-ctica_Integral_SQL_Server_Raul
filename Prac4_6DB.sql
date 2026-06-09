@@ -449,3 +449,67 @@ GO
 ALTER TABLE Gestion.Habitaciones
 ADD disponibilidad BIT DEFAULT 1;
 GO
+
+--Modulo  IV (DROP)
+
+
+--  Eliminar una tabla temporal.
+DROP TABLE IF EXISTS #TablaTemporalPacientes;
+GO
+
+-- Eliminar una restricción CHECK.
+ALTER TABLE Gestion.Habitaciones
+DROP CONSTRAINT CHK_PrecioHabitacion;
+GO
+
+--  Eliminar una restricción UNIQUE.
+ALTER TABLE Clinico.Pacientes
+DROP CONSTRAINT UQ_Correo;
+GO
+
+--  Eliminar una columna.
+ALTER TABLE Clinico.Pacientes
+DROP COLUMN genero;
+GO
+
+--  Eliminar una tabla de pruebas.
+DROP TABLE IF EXISTS Clinico.TablaPruebas;
+GO
+
+--  Crear y eliminar una tabla Auditoria.
+CREATE TABLE Gestion.Auditoria (
+    IdAuditoria INT IDENTITY(1,1) PRIMARY KEY,
+    Accion VARCHAR(50),
+    Fecha DATETIME DEFAULT GETDATE()
+);
+GO
+DROP TABLE IF EXISTS Gestion.Auditoria;
+GO
+
+--  Crear y eliminar una tabla Logs.
+CREATE TABLE Gestion.Logs (
+    IdLog INT IDENTITY(1,1) PRIMARY KEY,
+    Descripcion VARCHAR(MAX),
+    FechaLog DATETIME DEFAULT GETDATE()
+);
+GO
+DROP TABLE IF EXISTS Gestion.Logs;
+GO
+
+-- Eliminar una FOREIGN KEY.
+ALTER TABLE Gestion.Habitaciones
+DROP CONSTRAINT FK_EspecialidadHabitacion;
+GO
+
+--  Eliminar una tabla MedicamentosPrueba.
+DROP TABLE IF EXISTS Clinico.MedicamentosPrueba;
+GO
+
+--  Eliminar una base de datos de pruebas.
+USE master
+GO
+DROP DATABASE IF EXISTS HospitalDB_Pruebas;
+GO
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
