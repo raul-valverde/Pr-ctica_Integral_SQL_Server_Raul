@@ -674,3 +674,89 @@ ALTER TABLE Gestion.Habitaciones CHECK CONSTRAINT ALL;
 ALTER TABLE Clinico.Tratamientos CHECK CONSTRAINT ALL;
 ALTER TABLE Clinico.Medicamentos CHECK CONSTRAINT ALL;
 GO
+
+
+--Modulo VI UPDATE
+-- Actualizar teléfono de un paciente.
+UPDATE Clinico.Pacientes
+SET telefono = '555-9999'
+WHERE IdPaciente = 1;
+GO
+
+-- Actualizar dirección de un paciente.
+UPDATE Clinico.Pacientes
+SET direccion = 'Nueva Avenida Principal #45'
+WHERE IdPaciente = 2;
+GO
+
+-- Actualizar salario de un médico.
+UPDATE RRHH.Medicos
+SET salario = 3800.00
+WHERE IdMedico = 1;
+GO
+
+-- Actualizar turno de un médico.
+UPDATE RRHH.Medicos
+SET turno = 'Nocturno'
+WHERE IdMedico = 2;
+GO
+
+-- Cambiar estado de una cita.
+UPDATE Gestion.Citas
+SET estado = 'Completada'
+WHERE IdCita = 6;
+GO
+
+-- Actualizar costo de consulta.
+UPDATE Gestion.Citas
+SET costo_consulta = 65.00
+WHERE IdCita = 7;
+GO
+
+-- Actualizar nombre de especialidad.
+UPDATE RRHH.Especialidades
+SET nombre = 'Cardiología Avanzada'
+WHERE IdEspecialidad = 1;
+GO
+
+-- Actualizar disponibilidad de habitación.
+UPDATE Gestion.Habitaciones
+SET disponibilidad = 0, EstadoHabitacion = 'Ocupada'
+WHERE numero_habitacion = 202;
+GO
+
+-- Actualizar tratamiento activo.
+UPDATE Clinico.Tratamientos
+SET guia_medicamentos = 'Tomar 1 tableta cada 12 horas en lugar de cada 24.'
+WHERE IdTratamiento = 1;
+GO
+
+-- Actualizar medicamento.
+UPDATE Clinico.Medicamentos
+SET precio = 3.10, stock = 480
+WHERE IdMedicamento = 1;
+GO
+
+-- Actualizar correo de médico.
+UPDATE RRHH.Medicos
+SET correo = 'nuevo.correo.medico@hospital.com'
+WHERE IdMedico = 3;
+GO
+
+-- Actualizar fecha de cita.
+UPDATE Gestion.Citas
+SET fecha_cita = '2026-08-15 10:30:00'
+WHERE IdCita = 8;
+GO
+
+-- Actualizar experiencia del médico.
+UPDATE RRHH.Medicos
+SET experiencia = 12
+WHERE IdMedico = 4;
+GO
+
+-- Actualizar tipo de sangre.
+UPDATE Clinico.Pacientes
+SET tipo_sangre = 'A-'
+WHERE IdPaciente = 4;
+GO
