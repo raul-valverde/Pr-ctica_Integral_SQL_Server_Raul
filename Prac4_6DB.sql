@@ -815,3 +815,52 @@ GO
 DELETE FROM Clinico.Pacientes
 WHERE nombre LIKE '%Prueba%' OR apellido LIKE '%Prueba%';
 GO
+
+--Modulo VIII Finalización de la base de datos y consultas de prueba
+
+-- Mostrar todos los pacientes.
+SELECT * FROM Clinico.Pacientes;
+GO
+
+-- Mostrar todos los médicos.
+SELECT * FROM RRHH.Medicos;
+GO
+
+-- Mostrar todas las especialidades.
+SELECT * FROM RRHH.Especialidades;
+GO
+
+-- Mostrar todas las citas.
+SELECT * FROM Gestion.Citas;
+GO
+
+-- Mostrar pacientes ordenados por apellido.
+SELECT * FROM Clinico.Pacientes
+ORDER BY apellido ASC;
+GO
+
+-- Mostrar médicos ordenados por salario (de mayor a menor).
+SELECT * FROM RRHH.Medicos
+ORDER BY salario DESC;
+GO
+
+SELECT * FROM Gestion.Citas
+WHERE fecha_cita  = '2026-06-08';
+GO
+
+-- Mostrar habitaciones disponibles.
+SELECT * FROM Gestion.Habitaciones
+WHERE disponibilidad = 1;
+GO
+
+-- Mostrar cantidad de pacientes registrados.
+SELECT COUNT(*) AS TotalPacientes 
+FROM Clinico.Pacientes;
+GO
+
+-- Mostrar cantidad de citas por médico.
+-- (Agrupa las citas y cuenta cuántas tiene asignadas cada IdMedico)
+SELECT IdMedico, COUNT(*) AS CantidadCitas
+FROM Gestion.Citas
+GROUP BY IdMedico;
+GO
