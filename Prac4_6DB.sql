@@ -371,3 +371,31 @@ GO
 ALTER TABLE RRHH.Medicos 
     ADD CONSTRAINT FK_CitasMedico FOREIGN KEY (Citas) REFERENCES Gestion.Citas(IdCita);
 GO
+
+--Modulo III - Modificacion de estructura de tablas (ALTER TABLE)
+use HospitalDB
+Go
+--Agregar columna teléfono a Pacientes.
+ALTER TABLE Clinico.Pacientes
+ADD telefono varchar(8);
+go
+
+--Agregar columna dirección a Pacientes.
+ALTER TABLE Clinico.Pacientes
+ADD direccion varchar(255);
+go
+
+--Agregar columna género.
+ALTER TABLE Clinico.Pacientes
+ADD genero varchar(10);
+go
+
+--Agregar columna tipo_sangre.
+ALTER TABLE Clinico.Pacientes
+ADD tipo_sangre varchar(3);
+go
+
+--Agregar columna fecha_nacimiento.
+ALTER TABLE Clinico.Pacientes
+ADD fecha_nacimiento datetime;
+go
