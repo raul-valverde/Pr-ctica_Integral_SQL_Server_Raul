@@ -760,3 +760,58 @@ UPDATE Clinico.Pacientes
 SET tipo_sangre = 'A-'
 WHERE IdPaciente = 4;
 GO
+
+-------------------------------------------
+--Modulo VII DELETE
+-------------------------------------------
+-- Eliminar un paciente específico.
+DELETE FROM Clinico.Pacientes
+WHERE IdPaciente = 20;
+GO
+
+-- Eliminar una cita.
+DELETE FROM Gestion.Citas
+WHERE IdCita = 15;
+GO
+
+-- Eliminar un medicamento.
+DELETE FROM Clinico.Medicamentos
+WHERE IdMedicamento = 20;
+GO
+
+-- Eliminar una habitación.
+DELETE FROM Gestion.Habitaciones
+WHERE numero_habitacion = 302;
+GO
+
+-- Eliminar un tratamiento.
+DELETE FROM Clinico.Tratamientos
+WHERE IdTratamiento = 10;
+GO
+
+-- Eliminar citas canceladas.
+DELETE FROM Gestion.Citas
+WHERE estado = 'Cancelada';
+GO
+
+-- Eliminar pacientes sin citas.
+-- (Elimina pacientes cuyo ID no figure en ninguna fila de la tabla Citas)
+DELETE FROM Clinico.Pacientes
+WHERE IdPaciente NOT IN (
+    SELECT DISTINCT IdPaciente 
+    FROM Gestion.Citas 
+    WHERE IdPaciente IS NOT NULL
+);
+GO
+
+DELETE FROM Gestion.Habitaciones
+WHERE EstadoHabitacion = 'Disponible' OR IdPaciente IS NULL;
+GO
+
+DELETE FROM Clinico.Medicamentos
+WHERE deleted_at IS NOT NULL; -- O si existiera la columna: fecha_vencimiento < GETDATE()
+GO
+
+DELETE FROM Clinico.Pacientes
+WHERE nombre LIKE '%Prueba%' OR apellido LIKE '%Prueba%';
+GO
