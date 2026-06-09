@@ -399,3 +399,53 @@ go
 ALTER TABLE Clinico.Pacientes
 ADD fecha_nacimiento datetime;
 go
+
+-- Modificar tamaño del campo nombre
+ALTER TABLE Clinico.Pacientes
+ALTER COLUMN nombre varchar(100) not null;
+GO
+
+-- Modificar tamaño del campo dirección
+ALTER TABLE Clinico.Pacientes
+ALTER COLUMN direccion varchar(500);
+GO
+
+-- Agregar columna experiencia a Médicos
+ALTER TABLE RRHH.Medicos
+ADD experiencia int;
+GO
+
+-- Agregar columna turno a Médicos
+ALTER TABLE RRHH.Medicos
+ADD turno varchar(20);
+GO
+
+-- Agregar columna observaciones
+ALTER TABLE Gestion.Citas
+ADD observaciones varchar(1000);
+GO
+
+-- Eliminar columna observaciones
+ALTER TABLE Gestion.Citas
+DROP COLUMN observaciones;
+GO
+
+-- Agregar columna estado a Citas
+ALTER TABLE Gestion.Citas
+ADD estado varchar(30);
+GO
+
+-- Agregar columna costo_consulta
+ALTER TABLE Gestion.Citas
+ADD costo_consulta decimal(10,2);
+GO
+
+-- Modificar tipo de dato del costo
+ALTER TABLE Gestion.Citas
+ALTER COLUMN costo_consulta MONEY;
+GO
+
+-- Agregar columna disponibilidad a Habitaciones
+ALTER TABLE Gestion.Habitaciones
+ADD disponibilidad BIT DEFAULT 1;
+GO
